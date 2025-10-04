@@ -1,13 +1,13 @@
 {
   "containerVersion": {
     "container": {
-      "publicId": "GTM-XXXXXXX"
+      "publicId": "GTM-KDBQ93LX"
     },
     "tag": [
       {
         "accountId": "",
         "containerId": "",
-        "name": "GA4 - Configuration (Template)",
+  "name": "GA4 - Configuration (G-WBD2V506PW)",
         "type": "ga4config",
         "parameter": [
           {
@@ -22,7 +22,7 @@
       {
         "accountId": "",
         "containerId": "",
-        "name": "GA4 - Event: portfolio_button_click",
+  "name": "GA4 - Event: portfolio_button_click (from dataLayer)",
         "type": "ga4event",
         "parameter": [
           { "key":"eventName", "type":"TEMPLATE", "value":"portfolio_button_click" },
