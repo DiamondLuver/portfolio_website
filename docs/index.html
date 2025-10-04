@@ -343,6 +343,65 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             })();
         </script>
 
+                <!-- Firebase app initializer (no analytics by default). Exposes enable/disable helpers -->
+                <script type="module">
+                    // Initialize Firebase app (no analytics imported here)
+                    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+                    // Keep analytics import deferred until consent is granted
+
+                    const firebaseConfig = {
+                        apiKey: "AIzaSyDCl-RobsvKP_zHF1LCqiQPLKxFlpkl8EE",
+                        authDomain: "test-5cc70.firebaseapp.com",
+                        projectId: "test-5cc70",
+                        storageBucket: "test-5cc70.firebasestorage.app",
+                        messagingSenderId: "140566647837",
+                        appId: "1:140566647837:web:1be2df4732e26c70e8a2f4",
+                        measurementId: "G-TG2JDTFRZE"
+                    };
+
+                    const app = initializeApp(firebaseConfig);
+                    let _firebaseAnalytics = null;
+
+                    // Called when consent becomes granted. Imports analytics and initializes it.
+                    window.enableFirebaseAnalyticsIfConsent = async function() {
+                        try {
+                            if (_firebaseAnalytics) return _firebaseAnalytics;
+                            const module = await import('https://www.gstatic.com/firebasejs/12.3.0/firebase-analytics.js');
+                            _firebaseAnalytics = module.getAnalytics(app);
+                            // Optionally store reference
+                            window._firebaseAnalytics = _firebaseAnalytics;
+                            console.log('Firebase Analytics enabled');
+                            return _firebaseAnalytics;
+                        } catch (e) {
+                            console.warn('Failed to enable Firebase Analytics', e);
+                            return null;
+                        }
+                    };
+
+                    // Called when consent is revoked. Attempts to disable collection if API available.
+                    window.disableFirebaseAnalytics = function() {
+                        try {
+                            if (_firebaseAnalytics && typeof _firebaseAnalytics.setAnalyticsCollectionEnabled === 'function') {
+                                _firebaseAnalytics.setAnalyticsCollectionEnabled(false);
+                            }
+                            _firebaseAnalytics = null;
+                            delete window._firebaseAnalytics;
+                            console.log('Firebase Analytics disabled');
+                        } catch (e) {
+                            console.warn('Failed to disable Firebase Analytics', e);
+                        }
+                    };
+
+                    // If consent already granted at page load, enable analytics immediately
+                    try {
+                        var consent = null;
+                        try { consent = localStorage.getItem('ga_consent'); } catch(e) {}
+                        if (consent === 'granted') {
+                            window.enableFirebaseAnalyticsIfConsent();
+                        }
+                    } catch (e) { /* ignore */ }
+                </script>
+
 </body>
 
 </html>

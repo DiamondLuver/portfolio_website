@@ -26,6 +26,16 @@ function setAnalyticsConsent(granted) {
             'analytics_storage': granted ? 'granted' : 'denied'
         }
     });
+    // If Firebase analytics helpers are available, enable/disable accordingly
+    try {
+        if (granted && typeof window.enableFirebaseAnalyticsIfConsent === 'function') {
+            window.enableFirebaseAnalyticsIfConsent();
+        } else if (!granted && typeof window.disableFirebaseAnalytics === 'function') {
+            window.disableFirebaseAnalytics();
+        }
+    } catch (e) {
+        // ignore errors from optional firebase helpers
+    }
 }
 
 // Delegated click listener for elements with data-gtm-button
