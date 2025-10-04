@@ -84,9 +84,8 @@
                         "type": "TEMPLATE",
                         "value": "G-TG2JDTFRZE"
                     }
-                ],
+                ]
                 
-                "monitoringMetadata": { "type": "GA4" }
             },
             {
                 "accountId": "6315834693",
