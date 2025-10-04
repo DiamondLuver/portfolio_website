@@ -1,19 +1,19 @@
 {
   "containerVersion": {
     "container": {
-      "publicId": "GTM-KDBQ93LX"
+      "publicId": "GTM-NKW9FTST"
     },
     "tag": [
       {
         "accountId": "",
         "containerId": "",
-  "name": "GA4 - Configuration (G-WBD2V506PW)",
+  "name": "GA4 - Configuration (G-TG2JDTFRZE)",
         "type": "ga4config",
         "parameter": [
           {
             "key": "measurementId",
             "type": "TEMPLATE",
-            "value": "G-WBD2V506PW"
+            "value": "G-TG2JDTFRZE"
           }
         ],
         "tagFiringOption": "oncePerEvent",
