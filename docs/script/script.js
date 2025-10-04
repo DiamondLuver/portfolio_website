@@ -1,12 +1,39 @@
 // Ensure dataLayer exists
 window.dataLayer = window.dataLayer || [];
 
+// Helper: check whether analytics consent has been granted
+function analyticsConsentGranted() {
+    try {
+        if (window._gaConsent === 'granted') return true;
+        return localStorage && localStorage.getItem('ga_consent') === 'granted';
+    } catch (e) {
+        return false;
+    }
+}
+
+// Helper: update consent (store in localStorage and push a dataLayer consent event)
+function setAnalyticsConsent(granted) {
+    try {
+        if (localStorage) localStorage.setItem('ga_consent', granted ? 'granted' : 'denied');
+    } catch (e) {
+        // ignore storage errors
+    }
+    window._gaConsent = granted ? 'granted' : 'denied';
+    window.dataLayer.push({
+        event: 'gtm.consent_update',
+        'consent': {
+            'ad_storage': granted ? 'granted' : 'denied',
+            'analytics_storage': granted ? 'granted' : 'denied'
+        }
+    });
+}
+
 // Delegated click listener for elements with data-gtm-button
 document.addEventListener('click', function (e) {
     var button = e.target.closest('[data-gtm-button]');
     if (!button) return;
 
-    var payload = {
+    var     payload = {
         event: 'portfolio_button_click',          // Custom event name used in GTM
         button_id: button.id || null,             // optional
         button_role: button.getAttribute('data-gtm-button') || null,
@@ -33,15 +60,20 @@ document.addEventListener('click', function (e) {
     }
 
     if (isAnchor && isExternal && (button.target === null || button.target === '' || button.target === undefined) && !isSpecialScheme && !isHash) {
-        // stop navigation, push event, then navigate after a short delay
+        // stop navigation, push event (if consented), then navigate after a short delay
         e.preventDefault();
-        window.dataLayer.push(payload);
-
-        if (window.location.hostname === 'localhost' || /debug|dev/.test(window.location.href)) {
-            console.log('GTM push (external link):', payload);
+        if (analyticsConsentGranted()) {
+            window.dataLayer.push(payload);
+            if (window.location.hostname === 'localhost' || /debug|dev/.test(window.location.href)) {
+                console.log('GTM push (external link):', payload);
+            }
+        } else {
+            if (window.location.hostname === 'localhost' || /debug|dev/.test(window.location.href)) {
+                console.log('Analytics consent not granted — skipping push for', payload);
+            }
         }
 
-        // Wait briefly so GTM/analytics tags have time to fire. 250ms is usually enough.
+        // Wait briefly so GTM/analytics tags have time to fire (if pushed). 250ms is usually enough.
         setTimeout(function () {
             window.location.href = href;
         }, 250);
@@ -49,12 +81,16 @@ document.addEventListener('click', function (e) {
         return;
     }
 
-    // Non-external links or links that open in a new tab: just push and continue
-    window.dataLayer.push(payload);
-
-    // Optional: also log to console during dev
-    if (window.location.hostname === 'localhost' || /debug|dev/.test(window.location.href)) {
-        console.log('GTM push:', payload);
+    // Non-external links or links that open in a new tab: push only if consent granted
+    if (analyticsConsentGranted()) {
+        window.dataLayer.push(payload);
+        if (window.location.hostname === 'localhost' || /debug|dev/.test(window.location.href)) {
+            console.log('GTM push:', payload);
+        }
+    } else {
+        if (window.location.hostname === 'localhost' || /debug|dev/.test(window.location.href)) {
+            console.log('Analytics consent not granted — skipping push for', payload);
+        }
     }
 });
 

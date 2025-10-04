@@ -4,8 +4,45 @@
   <title>Portfolio Website-Sreypich</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Google Tag Manager: replace G-WBD2V506PW with your container ID -->
-  <!-- Google Tag Manager -->
+    <!-- Initialize consent BEFORE GTM loads. This pushes gtm.init_consent to the dataLayer
+             and sets a small helper window._gaConsent ("granted" or "denied").
+             The value is read from localStorage key `ga_consent` if present. -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        (function () {
+            var consent = 'denied';
+            try {
+                if (localStorage && localStorage.getItem('ga_consent') === 'granted') {
+                    consent = 'granted';
+                }
+            } catch (e) {
+                // ignore localStorage errors
+            }
+
+            // Push initial consent state so GTM can initialize consent mode accordingly
+            window.dataLayer.push({
+                event: 'gtm.init_consent',
+                'default': {
+                    'ad_storage': consent === 'granted' ? 'granted' : 'denied',
+                    'analytics_storage': consent === 'granted' ? 'granted' : 'denied'
+                }
+            });
+
+            // Expose a quick flag for page scripts to check
+            window._gaConsent = consent;
+        })();
+    </script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WBD2V506PW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WBD2V506PW');
+</script>
+
+    <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -19,15 +56,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- font awesome -->
   <script src="https://kit.fontawesome.com/31149d48b0.js" crossorigin="anonymous"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WBD2V506PW"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-WBD2V506PW');
-    </script>
+    <!-- Minimal styles for consent banner -->
+    <style>
+        #consent-banner {
+            position: fixed;
+            left: 1rem;
+            right: 1rem;
+            bottom: 1rem;
+            background: rgba(0,0,0,0.85);
+            color: #fff;
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            z-index: 9999;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+        #consent-banner p { margin: 0; flex: 1; font-size: 14px }
+        #consent-banner .consent-actions { display:flex; gap:0.5rem }
+        #consent-banner button { border: none; padding: 0.5rem 0.75rem; border-radius:6px; cursor:pointer }
+        #consent-accept { background:#0d6efd; color:#fff }
+        #consent-decline { background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.18) }
+        @media (max-width:420px){ #consent-banner{flex-direction:column;align-items:stretch} #consent-banner p{margin-bottom:.5rem} }
+    </style>
+    <!-- Removed standalone gtag.js to avoid double-tracking. GA4 will be loaded via GTM. -->
 </head>
 
 <body>
@@ -255,6 +309,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- load javascript after loading all html content -->
     <script src="script/script.js"></script>
+
+        <!-- Consent banner HTML (shown if user hasn't chosen) -->
+        <div id="consent-banner" style="display:none" aria-live="polite">
+            <p>We use cookies to personalize content and analyze site usage. Do you accept analytics cookies?</p>
+            <div class="consent-actions">
+                <button id="consent-decline">Decline</button>
+                <button id="consent-accept">Accept</button>
+            </div>
+        </div>
+
+        <script>
+            (function(){
+                // show banner only when no consent stored
+                var banner = document.getElementById('consent-banner');
+                function hasChoice(){
+                    try { return localStorage && localStorage.getItem('ga_consent') !== null } catch(e){return false}
+                }
+
+                if (!hasChoice()) {
+                    banner.style.display = 'flex';
+                }
+
+                document.getElementById('consent-accept').addEventListener('click', function(){
+                    if (typeof setAnalyticsConsent === 'function') setAnalyticsConsent(true);
+                    banner.style.display = 'none';
+                });
+
+                document.getElementById('consent-decline').addEventListener('click', function(){
+                    if (typeof setAnalyticsConsent === 'function') setAnalyticsConsent(false);
+                    banner.style.display = 'none';
+                });
+            })();
+        </script>
 
 </body>
 
