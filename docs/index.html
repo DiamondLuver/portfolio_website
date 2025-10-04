@@ -9,28 +9,28 @@
              The value is read from localStorage key `ga_consent` if present. -->
     <script>
         window.dataLayer = window.dataLayer || [];
-        (function () {
-            var consent = 'denied';
-            try {
-                if (localStorage && localStorage.getItem('ga_consent') === 'granted') {
-                    consent = 'granted';
-                }
-            } catch (e) {
-                // ignore localStorage errors
-            }
+        // (function () {
+        //     var consent = 'denied';
+        //     try {
+        //         if (localStorage && localStorage.getItem('ga_consent') === 'granted') {
+        //             consent = 'granted';
+        //         }
+        //     } catch (e) {
+        //         // ignore localStorage errors
+        //     }
 
-            // Push initial consent state so GTM can initialize consent mode accordingly
-            window.dataLayer.push({
-                event: 'gtm.init_consent',
-                'default': {
-                    'ad_storage': consent === 'granted' ? 'granted' : 'denied',
-                    'analytics_storage': consent === 'granted' ? 'granted' : 'denied'
-                }
-            });
+        //     // Push initial consent state so GTM can initialize consent mode accordingly
+        //     window.dataLayer.push({
+        //         event: 'gtm.init_consent',
+        //         'default': {
+        //             'ad_storage': consent === 'granted' ? 'granted' : 'denied',
+        //             'analytics_storage': consent === 'granted' ? 'granted' : 'denied'
+        //         }
+        //     });
 
-            // Expose a quick flag for page scripts to check
-            window._gaConsent = consent;
-        })();
+        //     // Expose a quick flag for page scripts to check
+        //     window._gaConsent = consent;
+        // })();
     </script>
     <!-- Google Tag Manager -->
     <!-- Google Tag Manager -->
