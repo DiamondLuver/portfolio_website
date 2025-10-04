@@ -1,0 +1,50 @@
+{
+  "containerVersion": {
+    "container": {
+      "publicId": "GTM-XXXXXXX"
+    },
+    "tag": [
+      {
+        "accountId": "",
+        "containerId": "",
+        "name": "GA4 - Configuration (Template)",
+        "type": "ga4config",
+        "parameter": [
+          {
+            "key": "measurementId",
+            "type": "TEMPLATE",
+            "value": "G-WBD2V506PW"
+          }
+        ],
+        "tagFiringOption": "oncePerEvent",
+        "monitoringMetadata": {"type":"GA4"}
+      },
+      {
+        "accountId": "",
+        "containerId": "",
+        "name": "GA4 - Event: portfolio_button_click",
+        "type": "ga4event",
+        "parameter": [
+          { "key":"eventName", "type":"TEMPLATE", "value":"portfolio_button_click" },
+          { "key":"eventParameters", "type":"MAP", "map": [
+            { "key":"button_id", "type":"TEMPLATE", "value":"{{DLV - button_id}}" },
+            { "key":"button_role", "type":"TEMPLATE", "value":"{{DLV - button_role}}" },
+            { "key":"button_text", "type":"TEMPLATE", "value":"{{DLV - button_text}}" },
+            { "key":"page_location", "type":"TEMPLATE", "value":"{{DLV - page_location}}" }
+          ] }
+        ],
+        "firingTriggerId": ["2147479550"]
+      }
+    ],
+    "variable": [
+      { "name": "DLV - button_id", "type": "v", "parameter": [{"key":"name","value":"button_id"}] },
+      { "name": "DLV - button_role", "type": "v", "parameter": [{"key":"name","value":"button_role"}] },
+      { "name": "DLV - button_text", "type": "v", "parameter": [{"key":"name","value":"button_text"}] },
+      { "name": "DLV - page_location", "type": "v", "parameter": [{"key":"name","value":"page_location"}] }
+    ],
+    "trigger": [
+      { "name": "Trigger - portfolio_button_click", "type": "CUSTOM_EVENT", "filter": [{"type":"EQUALS","parameter":[{"key":"arg0","type":"TEMPLATE","value":"{{event}}"},{"key":"arg1","type":"TEMPLATE","value":"portfolio_button_click"}]}], "fingerprint":"2147479550" }
+    ],
+    "builtInVariable": ["event"]
+  }
+}

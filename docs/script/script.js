@@ -123,3 +123,36 @@ const menuToggle = document.getElementById('navbarSupportedContent')
 navLinks.forEach((l) => {
     l.addEventListener('click', () => { new bootstrap.Collapse(menuToggle).toggle() })
 })
+
+// --- Testing helpers (temporary) ---
+// Call enableDLLogging() to log every dataLayer.push to the console.
+window.enableDLLogging = function() {
+    if (window._dlLoggingEnabled) return;
+    window._dlLoggingEnabled = true;
+    window._dlOrigPush = window.dataLayer.push.bind(window.dataLayer);
+    window.dataLayer.push = function() {
+        try { console.log('dataLayer.push called with:', arguments); } catch(e) {}
+        return window._dlOrigPush.apply(window.dataLayer, arguments);
+    };
+    console.log('dataLayer logging enabled');
+};
+
+window.disableDLLogging = function() {
+    if (!window._dlLoggingEnabled) return;
+    window.dataLayer.push = window._dlOrigPush;
+    window._dlLoggingEnabled = false;
+    delete window._dlOrigPush;
+    console.log('dataLayer logging disabled');
+};
+
+// Push a test portfolio_button_click event
+window.pushTestEvent = function() {
+    window.dataLayer.push({
+        event: 'portfolio_button_click',
+        button_id: 'test-manual',
+        button_role: 'manual-test',
+        button_text: 'Manual Test',
+        page_location: window.location.pathname
+    });
+    console.log('Manual test event pushed');
+};
