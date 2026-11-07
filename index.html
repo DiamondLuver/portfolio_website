@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="paper">
 <head>
-  <title>Un Sreypich | Portfolio</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Un Sreypich: Master's student in Electronic Information at Sun Yat-sen University, software engineer with experience building, deploying and operating web and AI products.">
+  <title>Un Sreypich | Portfolio</title>
+  <meta name="description" content="Un Sreypich: Master's student in Aerospace Information Engineering at Sun Yat-sen University. Software & DevOps engineer who builds, deploys and runs web and AI products.">
+  <!-- apply saved theme before paint to avoid a flash -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t && /^(paper|midnight|orbit|terminal)$/.test(t)) document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
   <!-- Google Tag Manager: replace G-Z9LKSRHV3V with your container ID -->
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -14,13 +23,10 @@
     })(window,document,'script','dataLayer','G-Z9LKSRHV3V');
   </script>
   <!-- End Google Tag Manager -->
-  <!-- bootstrap CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- linking css file (after bootstrap so overrides apply) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <!-- font awesome -->
-  <script src="https://kit.fontawesome.com/31149d48b0.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -29,330 +35,258 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark navbarScroll">
-        <div class="container">
-            <a class="navbar-brand" href="#home" data-gtm-button="brand">Sreypich</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home" data-gtm-button="nav-home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about" data-gtm-button="nav-about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#experience" data-gtm-button="nav-experience">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#awards" data-gtm-button="nav-awards">Awards</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio" data-gtm-button="nav-portfolio">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#skills" data-gtm-button="nav-skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact" data-gtm-button="nav-contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="#top" class="logo" data-gtm-button="brand">
+        <span data-theme-only="paper">Sreypich.</span>
+        <span data-theme-only="midnight">sreypich</span>
+        <span data-theme-only="orbit">SREYPICH / SYSU</span>
+        <span data-theme-only="terminal">~/sreypich $</span>
+      </a>
+      <nav class="nav" aria-label="Sections">
+        <a href="#about" data-gtm-button="nav-about">About</a>
+        <a href="#experience" data-gtm-button="nav-experience">Experience</a>
+        <a href="#awards" data-gtm-button="nav-awards">Awards</a>
+        <a href="#projects" data-gtm-button="nav-projects">Projects</a>
+        <a href="#skills" data-gtm-button="nav-skills">Skills</a>
+        <a href="#contact" data-gtm-button="nav-contact">Contact</a>
+      </nav>
+      <div class="theme-switch" role="group" aria-label="Choose a theme">
+        <button type="button" data-set-theme="paper" data-gtm-button="theme-paper"><span class="swatch" aria-hidden="true"></span>Paper</button>
+        <button type="button" data-set-theme="midnight" data-gtm-button="theme-midnight"><span class="swatch" aria-hidden="true"></span>Midnight</button>
+        <button type="button" data-set-theme="orbit" data-gtm-button="theme-orbit"><span class="swatch" aria-hidden="true"></span>Orbit</button>
+        <button type="button" data-set-theme="terminal" data-gtm-button="theme-terminal"><span class="swatch" aria-hidden="true"></span>Terminal</button>
+      </div>
+    </div>
+  </header>
 
-    <!-- main banner -->
-    <section class="bgimage" id="home">
-        <div class="hero-text">
-            <h1 class="hero_title">Hi, I'm Sreypich</h1>
-            <p class="hero_desc">Master's student at Sun Yat-sen University &middot; Software &amp; DevOps Engineer</p>
-            <p class="hero_sub">Building web and AI products, now exploring intelligent unmanned systems.</p>
-            <a href="#portfolio" class="btn btn-success btn-lg mt-3" data-gtm-button="hero-projects">See my work</a>
+  <main>
+    <section id="top" class="wrap hero">
+      <div class="hero-text">
+        <p class="kicker">
+          <span data-theme-only="paper">Software · DevOps · Aerospace info</span>
+          <span data-theme-only="midnight">Software · DevOps · AI products</span>
+          <span data-theme-only="orbit">Navigation · Perception · Unmanned systems</span>
+          <span data-theme-only="terminal">&gt; whoami</span>
+        </p>
+        <h1>Un Sreypich</h1>
+        <p class="hero-lead">Master's student in Aerospace Information Engineering at Sun Yat-sen University. Software &amp; DevOps engineer who builds, deploys and runs web and AI products.</p>
+        <div class="btn-row">
+          <a href="#projects" class="btn btn-primary" data-gtm-button="hero-projects">See my work</a>
+          <a href="#contact" class="btn btn-outline" data-gtm-button="hero-contact">Get in touch</a>
         </div>
+      </div>
+      <div class="hero-photo">
+        <img src="images/profile.png" alt="Portrait of Un Sreypich">
+      </div>
     </section>
 
-    <!-- about section-->
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="row mt-4 align-items-start">
-                <div class="col-lg-4 mb-4">
-                    <img src="images/profile.png" class="imageAboutPage" alt="Portrait of Un Sreypich">
-                </div>
-                <div class="col-lg-8">
-                    <p class="lead">
-                        I'm a Master's student in Electronic Information (Aerospace Information Engineering) at Sun Yat-sen University.
-                        I have a background in software engineering and about two years of industry experience building, deploying and operating web and AI products.
-                        I'm interested in intelligent unmanned systems and in applying deep learning to navigation and perception.
-                    </p>
-
-                    <h4 class="mt-4">Education</h4>
-                    <div class="edu-item">
-                        <h5>Master of Electronic Information <span class="text-muted">&middot; 2026 – present</span></h5>
-                        <p class="mb-1">Sun Yat-sen University, School of Systems Science and Engineering</p>
-                        <p class="small text-muted mb-1">New Generation Electronic Information Technology &middot; SYSU Cambodia Aerospace Information Engineering Talent International Student Program</p>
-                        <p class="small mb-0"><strong>Relevant courses:</strong> Satellite Navigation and Positioning Technology, System Simulation Technology, Principles of Systems Engineering, Intelligent Unmanned Systems, Frontiers of Deep Learning, Pattern Recognition</p>
-                    </div>
-                    <div class="edu-item">
-                        <h5>Bachelor of Software Engineering <span class="text-muted">&middot; 2021 – 2025</span></h5>
-                        <p class="mb-0">Cambodia Academy of Digital Technology (CADT)</p>
-                    </div>
-                    <div class="edu-item">
-                        <h5>General English Program <span class="text-muted">&middot; 2021 – 2023</span></h5>
-                        <p class="mb-0">Cam-ASEAN International Institute</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section class="highlights" aria-label="Highlights">
+      <div class="wrap highlights-grid">
+        <div><p class="stat">~2 yrs</p><p class="muted">industry experience in web &amp; AI products</p></div>
+        <div><p class="stat">4 awards</p><p class="muted">incl. 1st place, Turing Hackathon Cycle 8</p></div>
+        <div><p class="stat">K8s · CI/CD</p><p class="muted">microservice deployments at Smean AI</p></div>
+      </div>
     </section>
 
-    <!-- experience section-->
-    <section id="experience">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-            <div class="timeline mt-4">
-                <div class="timeline-item">
-                    <h5>Technical &amp; DevOps Specialist <span class="org">&middot; Smean AI</span></h5>
-                    <p class="date">Jul 2025 – 2026</p>
-                    <ul>
-                        <li>Developed frontend and backend features for the company's AI products.</li>
-                        <li>Designed and managed deployments of the company's microservice platform, including CI/CD pipelines and Kubernetes.</li>
-                        <li>Supported the infrastructure for speech-to-text and text-to-speech (STT/TTS) services.</li>
-                    </ul>
-                </div>
-                <div class="timeline-item">
-                    <h5>Software Developer (Part-time) <span class="org">&middot; BookMeBus Co., Ltd</span></h5>
-                    <p class="date">May 2025 – Aug 2026</p>
-                    <ul>
-                        <li>Continued development of the transit system service after the internship.</li>
-                    </ul>
-                </div>
-                <div class="timeline-item">
-                    <h5>Software Development Intern <span class="org">&middot; BookMeBus Co., Ltd</span></h5>
-                    <p class="date">Mar 2025 – May 2025</p>
-                    <ul>
-                        <li>Built features and improvements for the backend and frontend of the Operator dashboard of a transit booking system, using Ruby on Rails.</li>
-                    </ul>
-                </div>
-                <div class="timeline-item">
-                    <h5>Web Development Intern <span class="org">&middot; Ministry of Interior, Cambodia</span></h5>
-                    <p class="date">Jan 2024 – Apr 2024</p>
-                    <ul>
-                        <li>Learned to design and build APIs for an internal government system.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h4 class="mt-5">Leadership &amp; Activities</h4>
-            <div class="row">
-                <div class="col-lg-4 mt-3">
-                    <div class="card servicesText h-100">
-                        <div class="card-body">
-                            <i class="fas servicesIcon fa-rocket"></i>
-                            <h5 class="card-title mt-3">Techpreneur Bootcamp</h5>
-                            <p class="small text-muted text-center">DICHI Academy &middot; Jun 2024 – Apr 2025</p>
-                            <p class="card-text">Full-stack development training combined with entrepreneurship.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mt-3">
-                    <div class="card servicesText h-100">
-                        <div class="card-body">
-                            <i class="fas servicesIcon fa-users"></i>
-                            <h5 class="card-title mt-3">Mentorship Program</h5>
-                            <p class="small text-muted text-center">CADT &middot; Jul 2024 – Sep 2024</p>
-                            <p class="card-text">Led a team using Scrum.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mt-3">
-                    <div class="card servicesText h-100">
-                        <div class="card-body">
-                            <i class="fas servicesIcon fa-bullhorn"></i>
-                            <h5 class="card-title mt-3">Communication Officer</h5>
-                            <p class="small text-muted text-center">CADT Student Association &middot; 2022 – 2023</p>
-                            <p class="card-text">Managed the association's social media and event updates.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section id="about" class="wrap section">
+      <p class="eyebrow">01 · About</p>
+      <h2>From shipping products to unmanned systems</h2>
+      <div class="about-grid">
+        <p class="about-text">I have a background in software engineering and about two years of industry experience building, deploying and operating web and AI products. Now at Sun Yat-sen University, I'm interested in intelligent unmanned systems and in applying deep learning to navigation and perception.</p>
+        <div class="stack">
+          <div class="card">
+            <div class="card-head"><h3>Master of Electronic Information</h3><span class="date">2026 – present</span></div>
+            <p class="muted small">Sun Yat-sen University · School of Systems Science and Engineering</p>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Bachelor of Software Engineering</h3><span class="date">2021 – 2025</span></div>
+            <p class="muted small">Cambodia Academy of Digital Technology (CADT)</p>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>General English Program</h3><span class="date">2021 – 2023</span></div>
+            <p class="muted small">Cam-ASEAN International Institute</p>
+          </div>
+          <p class="muted small"><strong class="fg">Courses:</strong> Satellite Navigation &amp; Positioning, System Simulation, Systems Engineering, Intelligent Unmanned Systems, Frontiers of Deep Learning, Pattern Recognition</p>
         </div>
+      </div>
     </section>
 
-    <!-- awards section-->
-    <section id="awards">
-        <div class="container">
-            <h2 class="section-title">Awards</h2>
-            <div class="row">
-                <div class="col-md-6 mt-4">
-                    <div class="card award-card h-100">
-                        <div class="card-body">
-                            <i class="fas fa-trophy award-icon"></i>
-                            <h5>Top Performance Award</h5>
-                            <p class="small text-muted">Digital Platform Accelerator Cohort 5, Techo Startup Center &middot; Jul 2026</p>
-                            <p>Three-month accelerator with the Smean AI team, among 9 teams.</p>
-                            <a href="https://www.khmertimeskh.com/501949133/five-startups-secure-top-honours-in-tsc-accelerator-programme/" target="_blank" rel="noopener" data-gtm-button="award-tsc-news">Read the news <i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mt-4">
-                    <div class="card award-card h-100">
-                        <div class="card-body">
-                            <i class="fas fa-medal award-icon"></i>
-                            <h5>2nd Runner-up (3rd place)</h5>
-                            <p class="small text-muted">ACT Smart MSME Track Cohort 1, AUPP Technology Center x Smart &middot; Dec 2025</p>
-                            <p>Among 8 MSME teams.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mt-4">
-                    <div class="card award-card h-100">
-                        <div class="card-body">
-                            <i class="fas fa-trophy award-icon"></i>
-                            <h5>Winner (1st place)</h5>
-                            <p class="small text-muted">Turing Hackathon Cycle 8, Techo Startup Center &middot; Jul 2025</p>
-                            <p>Five-day program, among 12 teams from across Cambodia.</p>
-                            <a href="https://startupcambodia.gov.kh/resource/category/blog/281" target="_blank" rel="noopener" data-gtm-button="award-turing-blog">Read the blog <i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mt-4">
-                    <div class="card award-card h-100">
-                        <div class="card-body">
-                            <i class="fas fa-lightbulb award-icon"></i>
-                            <h5>Top 12 finalist, top 3 in Tourism sector</h5>
-                            <p class="small text-muted">Ideathon Cambodia 2024, Mars Flag &middot; Sep 2024</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section id="experience" class="wrap section">
+      <p class="eyebrow">02 · Experience</p>
+      <h2>Where I've worked</h2>
+      <div class="rows">
+        <div class="row">
+          <p class="row-label date">Jul 2025 – 2026</p>
+          <div class="row-body">
+            <h3>Technical &amp; DevOps Specialist <span class="accent">· Smean AI</span></h3>
+            <ul class="muted">
+              <li>Developed frontend and backend features for the company's AI products.</li>
+              <li>Designed and managed deployments of the microservice platform, including CI/CD pipelines and Kubernetes.</li>
+              <li>Supported the infrastructure for speech-to-text and text-to-speech (STT/TTS) services.</li>
+            </ul>
+          </div>
         </div>
+        <div class="row">
+          <p class="row-label date">May 2025 – Aug 2026</p>
+          <div class="row-body">
+            <h3>Software Developer (Part-time) <span class="accent">· BookMeBus</span></h3>
+            <ul class="muted"><li>Continued development of the transit system service after the internship.</li></ul>
+          </div>
+        </div>
+        <div class="row">
+          <p class="row-label date">Mar 2025 – May 2025</p>
+          <div class="row-body">
+            <h3>Software Development Intern <span class="accent">· BookMeBus</span></h3>
+            <ul class="muted"><li>Built backend and frontend features for the Operator dashboard of a transit booking system, using Ruby on Rails.</li></ul>
+          </div>
+        </div>
+        <div class="row">
+          <p class="row-label date">Jan 2024 – Apr 2024</p>
+          <div class="row-body">
+            <h3>Web Development Intern <span class="accent">· Ministry of Interior, Cambodia</span></h3>
+            <ul class="muted"><li>Learned to design and build APIs for an internal government system.</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="subhead">Leadership &amp; activities</h3>
+      <div class="grid grid-260">
+        <div class="card">
+          <p class="date">Jun 2024 – Apr 2025</p>
+          <h4>Techpreneur Bootcamp</h4>
+          <p class="accent small">DICHI Academy</p>
+          <p class="muted small">Full-stack development training combined with entrepreneurship.</p>
+        </div>
+        <div class="card">
+          <p class="date">Jul 2024 – Sep 2024</p>
+          <h4>Mentorship Program</h4>
+          <p class="accent small">CADT</p>
+          <p class="muted small">Led a team using Scrum.</p>
+        </div>
+        <div class="card">
+          <p class="date">2022 – 2023</p>
+          <h4>Communication Officer</h4>
+          <p class="accent small">CADT Student Association</p>
+          <p class="muted small">Managed the association's social media and event updates.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- portfolio section-->
-    <section id="portfolio">
-        <div class="container">
-            <h2 class="section-title">Projects</h2>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mt-4">
-                    <div class="card portfolioContent h-100">
-                        <div class="card-img-top placeholder-img"><i class="fas fa-id-card"></i></div>
-                        <div class="card-body">
-                            <h5 class="card-title">CV Generator Mobile App</h5>
-                            <p class="small text-muted text-center">Capstone II, CADT &middot; Jun 2024 – Aug 2024</p>
-                            <p class="card-text">A mobile app that lets users create CVs easily; delivered on deadline as a team.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mt-4">
-                    <div class="card portfolioContent h-100">
-                        <img class="card-img-top" src="images/capply.png" alt="CAPPLY scholarship website screenshot">
-                        <div class="card-body">
-                            <h5 class="card-title">CAPPLY: Scholarship Website</h5>
-                            <p class="small text-muted text-center">Capstone I, CADT &middot; Mar 2023 – Jun 2023</p>
-                            <p class="card-text">A Django website where users create accounts and browse scholarship listings.</p>
-                            <div class="text-center">
-                                <a href="https://github.com/DiamondLuver/CAPPLY--CAPSTONE-Project.git" class="btn btn-success" target="_blank" rel="noopener" data-gtm-button="project-capply">View on GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mt-4">
-                    <div class="card portfolioContent h-100">
-                        <img class="card-img-top" src="images/harrypotter.png" alt="Harry Potter Far From Hogwarts game screenshot">
-                        <div class="card-body">
-                            <h5 class="card-title">Harry Potter Far From Hogwarts</h5>
-                            <p class="card-text text-center">Java Swing game.</p>
-                            <div class="text-center">
-                                <a href="https://github.com/DiamondLuver/Harry_Potter_Far_From_Hogwarts.git" class="btn btn-success" target="_blank" rel="noopener" data-gtm-button="project-harrypotter">View on GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mt-4">
-                    <div class="card portfolioContent h-100">
-                        <img class="card-img-top" src="images/book_review.png" alt="Book Review website screenshot">
-                        <div class="card-body">
-                            <h5 class="card-title">Book Review: Web Design</h5>
-                            <p class="card-text text-center">Frontend built with HTML, CSS and JavaScript.</p>
-                            <div class="text-center">
-                                <a href="https://github.com/DiamondLuver/Book-Review-Web-Design.git" class="btn btn-success" target="_blank" rel="noopener" data-gtm-button="project-bookreview">View on GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mt-4">
-                    <div class="card portfolioContent h-100">
-                        <img class="card-img-top" src="images/efoodie.png" alt="E-Foodie website screenshot">
-                        <div class="card-body">
-                            <h5 class="card-title">E-Foodie</h5>
-                            <p class="card-text text-center">Laravel website that sells Khmer food.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section id="awards" class="wrap section">
+      <p class="eyebrow">03 · Awards</p>
+      <h2>Recognition</h2>
+      <div class="grid grid-300">
+        <div class="card award">
+          <p class="rank">Top Performance Award</p>
+          <h3>Digital Platform Accelerator Cohort 5</h3>
+          <p class="date">Techo Startup Center · Jul 2026</p>
+          <p class="muted small">Three-month accelerator with the Smean AI team, among 9 teams.</p>
+          <a class="link" href="https://www.khmertimeskh.com/501949133/five-startups-secure-top-honours-in-tsc-accelerator-programme/" target="_blank" rel="noopener" data-gtm-button="award-tsc-news">Khmer Times ↗</a>
         </div>
+        <div class="card award">
+          <p class="rank">1st place</p>
+          <h3>Turing Hackathon Cycle 8</h3>
+          <p class="date">Techo Startup Center · Jul 2025</p>
+          <p class="muted small">Five-day program, among 12 teams from across Cambodia.</p>
+          <a class="link" href="https://startupcambodia.gov.kh/resource/category/blog/281" target="_blank" rel="noopener" data-gtm-button="award-turing-blog">Read the blog ↗</a>
+        </div>
+        <div class="card award">
+          <p class="rank">3rd place</p>
+          <h3>ACT Smart MSME Track Cohort 1</h3>
+          <p class="date">AUPP Technology Center × Smart · Dec 2025</p>
+          <p class="muted small">2nd runner-up among 8 MSME teams.</p>
+        </div>
+        <div class="card award">
+          <p class="rank">Top 12 finalist</p>
+          <h3>Ideathon Cambodia 2024</h3>
+          <p class="date">Mars Flag · Sep 2024</p>
+          <p class="muted small">Top 3 in the Tourism sector.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- skills section-->
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title">Skills</h2>
-            <div class="row mt-4">
-                <div class="col-md-6 mb-4">
-                    <h5><i class="fas fa-code me-2"></i>Programming</h5>
-                    <div class="skill-tags">
-                        <span>Python</span><span>JavaScript</span><span>C</span><span>Java</span><span>HTML/CSS</span>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <h5><i class="fas fa-layer-group me-2"></i>Frameworks</h5>
-                    <div class="skill-tags">
-                        <span>Django</span><span>Flask</span><span>Laravel</span><span>Ruby on Rails</span><span>Next.js</span><span>NestJS</span>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <h5><i class="fas fa-server me-2"></i>Tools &amp; DevOps</h5>
-                    <div class="skill-tags">
-                        <span>Git/GitHub</span><span>CI/CD</span><span>Kubernetes</span><span>Figma</span>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <h5><i class="fas fa-brain me-2"></i>Machine Learning</h5>
-                    <div class="skill-tags">
-                        <span>Data handling &amp; processing (foundational)</span>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <h5><i class="fas fa-language me-2"></i>Languages</h5>
-                    <div class="skill-tags">
-                        <span>Khmer (native)</span><span>English (professional working proficiency)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section id="projects" class="wrap section">
+      <p class="eyebrow">04 · Projects</p>
+      <h2>Selected work</h2>
+      <div class="grid grid-320">
+        <article class="card project">
+          <div class="project-img placeholder" aria-hidden="true">CV Generator</div>
+          <div class="project-body">
+            <p class="tag">Capstone II · 2024</p>
+            <h3>CV Generator Mobile App</h3>
+            <p class="muted small grow">A mobile app that lets users create CVs easily, delivered on deadline as a team.</p>
+          </div>
+        </article>
+        <article class="card project">
+          <img class="project-img" src="images/capply.png" alt="CAPPLY scholarship website">
+          <div class="project-body">
+            <p class="tag">Capstone I · Django</p>
+            <h3>CAPPLY</h3>
+            <p class="muted small grow">Scholarship website where users create accounts and browse scholarship listings.</p>
+            <a class="link" href="https://github.com/DiamondLuver/CAPPLY--CAPSTONE-Project" target="_blank" rel="noopener" data-gtm-button="project-capply">View on GitHub ↗</a>
+          </div>
+        </article>
+        <article class="card project">
+          <img class="project-img" src="images/harrypotter.png" alt="Harry Potter Far From Hogwarts game">
+          <div class="project-body">
+            <p class="tag">Java Swing game</p>
+            <h3>Harry Potter: Far From Hogwarts</h3>
+            <p class="muted small grow">A desktop game built with Java Swing.</p>
+            <a class="link" href="https://github.com/DiamondLuver/Harry_Potter_Far_From_Hogwarts" target="_blank" rel="noopener" data-gtm-button="project-harrypotter">View on GitHub ↗</a>
+          </div>
+        </article>
+        <article class="card project">
+          <img class="project-img" src="images/book_review.png" alt="Book Review website">
+          <div class="project-body">
+            <p class="tag">HTML · CSS · JS</p>
+            <h3>Book Review</h3>
+            <p class="muted small grow">Frontend web design for a book review site.</p>
+            <a class="link" href="https://github.com/DiamondLuver/Book-Review-Web-Design" target="_blank" rel="noopener" data-gtm-button="project-bookreview">View on GitHub ↗</a>
+          </div>
+        </article>
+        <article class="card project">
+          <img class="project-img" src="images/efoodie.png" alt="E-Foodie website">
+          <div class="project-body">
+            <p class="tag">Laravel</p>
+            <h3>E-Foodie</h3>
+            <p class="muted small grow">A Laravel website that sells Khmer food.</p>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <!-- contact section-->
-    <section id="contact">
-        <div class="container contactContent text-center">
-            <h2 class="section-title">Get in Touch</h2>
-            <p class="lead mt-3">Currently based in China. Open to research collaborations and software projects.</p>
-            <div class="mt-4 d-flex flex-wrap justify-content-center gap-3">
-                <a href="https://github.com/DiamondLuver" class="btn btn-outline-dark btn-lg" target="_blank" rel="noopener" data-gtm-button="contact-github"><i class="fab fa-github me-2"></i>GitHub</a>
-                <a href="https://sreypichun.wordpress.com/" class="btn btn-outline-dark btn-lg" target="_blank" rel="noopener" data-gtm-button="contact-website"><i class="fas fa-globe me-2"></i>Website</a>
-            </div>
-            <p class="small text-muted mt-4">References available on request.</p>
-        </div>
+    <section id="skills" class="wrap section">
+      <p class="eyebrow">05 · Skills</p>
+      <h2>Toolbox</h2>
+      <div class="rows">
+        <div class="row"><h3 class="row-label">Programming</h3><div class="tags"><span>Python</span><span>JavaScript</span><span>C</span><span>Java</span><span>HTML/CSS</span></div></div>
+        <div class="row"><h3 class="row-label">Frameworks</h3><div class="tags"><span>Django</span><span>Flask</span><span>Laravel</span><span>Ruby on Rails</span><span>Next.js</span><span>NestJS</span></div></div>
+        <div class="row"><h3 class="row-label">Tools &amp; DevOps</h3><div class="tags"><span>Git/GitHub</span><span>CI/CD</span><span>Kubernetes</span><span>Figma</span></div></div>
+        <div class="row"><h3 class="row-label">Machine learning</h3><div class="tags"><span>Data handling &amp; processing (foundational)</span></div></div>
+        <div class="row"><h3 class="row-label">Languages</h3><div class="tags"><span>Khmer (native)</span><span>English (professional working)</span></div></div>
+      </div>
     </section>
 
-    <!-- footer section-->
-    <footer id="footer">
-        <div class="container-fluid">
-            <div class="social-icons">
-                <a href="https://github.com/DiamondLuver" target="_blank" rel="noopener" aria-label="GitHub" data-gtm-button="social-github"><i class="fab fa-github"></i></a>
-                <a href="https://sreypichun.wordpress.com/" target="_blank" rel="noopener" aria-label="Website" data-gtm-button="social-website"><i class="fas fa-globe"></i></a>
-            </div>
-            <p class="mb-0 pb-3 small">&copy; 2026 Un Sreypich</p>
+    <section id="contact" class="wrap section contact-section">
+      <div class="cta">
+        <h2>Let's build something together</h2>
+        <p>Based in China. Open to research collaborations and software projects.</p>
+        <div class="btn-row center">
+          <a href="https://github.com/DiamondLuver" class="btn btn-inverse" target="_blank" rel="noopener" data-gtm-button="contact-github">GitHub</a>
+          <a href="https://sreypichun.wordpress.com/" class="btn btn-inverse-outline" target="_blank" rel="noopener" data-gtm-button="contact-website">Website</a>
         </div>
-    </footer>
+      </div>
+    </section>
+  </main>
 
-    <!-- load javascript after loading all html content -->
-    <script src="script/script.js"></script>
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span>© 2026 Un Sreypich</span>
+      <span class="mono">Theme: <span id="theme-name">Paper</span></span>
+    </div>
+  </footer>
 
+  <script src="script/script.js"></script>
 </body>
-
 </html>

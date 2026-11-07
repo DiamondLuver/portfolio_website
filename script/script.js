@@ -58,21 +58,29 @@ document.addEventListener('click', function (e) {
     }
 });
 
-// add class navbarDark on navbar scroll
-const header = document.querySelector('.navbar');
-window.onscroll = function () {
-    const top = window.scrollY;
-    if (top >= 100) {
-        header.classList.add('navbarDark');
-    }
-    else {
-        header.classList.remove('navbarDark');
-    }
-}
-// collapse navbar after click on small devices
-const navLinks = document.querySelectorAll('.nav-item')
-const menuToggle = document.getElementById('navbarSupportedContent')
+// theme switcher: apply, remember and report the visitor's choice
+(function () {
+    var names = { paper: 'Paper', midnight: 'Midnight', orbit: 'Orbit', terminal: 'Terminal' };
+    var root = document.documentElement;
+    var buttons = document.querySelectorAll('[data-set-theme]');
+    var label = document.getElementById('theme-name');
 
-navLinks.forEach((l) => {
-    l.addEventListener('click', () => { new bootstrap.Collapse(menuToggle).toggle() })
-})
+    function apply(theme) {
+        if (!names[theme]) theme = 'paper';
+        root.setAttribute('data-theme', theme);
+        buttons.forEach(function (b) {
+            b.setAttribute('aria-pressed', b.getAttribute('data-set-theme') === theme ? 'true' : 'false');
+        });
+        if (label) label.textContent = names[theme];
+    }
+
+    apply(root.getAttribute('data-theme'));
+
+    buttons.forEach(function (b) {
+        b.addEventListener('click', function () {
+            var theme = b.getAttribute('data-set-theme');
+            apply(theme);
+            try { localStorage.setItem('theme', theme); } catch (e) {}
+        });
+    });
+})();
